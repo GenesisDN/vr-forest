@@ -1,76 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    private TerrainCollider terrainCollider;
+    private Collider dogCollider;
     private Vector3 targetPosition;
     private DogAgentController dogAgentController;
     public GameObject dogGameObject;
-    public InputActionProperty gripRightAnimationAction;
-    public InputActionProperty gripLeftAnimationAction;
-    public Transform rightHandController;
-    public Transform leftHandController;
-    public Transform cameraTransform;
-    public float distancePetThreshold = 0.3f;
-    public float distanceWalkTargetThreshold = 1.2f;
 
 
     void Start()
     {
         dogAgentController = dogGameObject.GetComponent<DogAgentController>();
+        dogCollider = GetComponent<Collider>();
+        terrainCollider = Terrain.activeTerrain.GetComponent<TerrainCollider>();
     }
 
 
     void Update()
     {
-        float gripValueRight = gripRightAnimationAction.action.ReadValue<float>();
-        float gripValueLeft = gripLeftAnimationAction.action.ReadValue<float>();
-        if (gripValueRight > 0 || gripValueLeft > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Pet();
-        }
 
-        //WalkToCamera();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-    }
-
-
-    void Pet()
-    {
-        // Check distance for right hand controller
-        if (rightHandController != null)
-        {
-            float distanceToRightHand = Vector3.Distance(rightHandController.position, dogGameObject.transform.position);
-            if (distanceToRightHand < distancePetThreshold)
+            if (dogCollider.Raycast(ray, out hit, Mathf.Infinity))
             {
                 dogAgentController.Pet();
             }
-        }
-
-        // Check distance for right hand controller
-        if (leftHandController != null)
-        {
-            float distanceToLeftHand = Vector3.Distance(leftHandController.position, dogGameObject.transform.position);
-            if (distanceToLeftHand < distancePetThreshold)
+            else if (terrainCollider.Raycast(ray, out hit, 1000))
             {
-                dogAgentController.Pet();
+                targetPosition = hit.point;
+                dogAgentController.SetTargetPosition(targetPosition);
             }
         }
-    }
-
-
-    void WalkToCamera()
-    {
-        if (dogGameObject != null && cameraTransform != null && Vector3.Distance(dogGameObject.transform.position, cameraTransform.position) > 2f)
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            Vector3 newPosition = cameraTransform.position + cameraTransform.forward * distanceWalkTargetThreshold;
-            newPosition.y = 0.01f;
-            dogAgentController.SetTargetPosition(newPosition);
-        } else
+            Debug.Log("B key was pressed");
+            dogAgentController.SetTargetTag("Bone");
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            dogAgentController.StopMovement();
+            Debug.Log("D key was pressed");
+            dogAgentController.DropObject();
         }
     }
 }
