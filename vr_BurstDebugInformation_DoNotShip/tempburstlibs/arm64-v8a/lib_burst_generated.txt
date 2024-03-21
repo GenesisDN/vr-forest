@@ -15,7 +15,6 @@ Library: /Users/dsi/Documents/vr/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_bu
 --assembly-defines=System.Configuration;
 --assembly-defines=System.Core;
 --assembly-defines=System;
---assembly-defines=System.Numerics;
 --assembly-defines=System.Xml;
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -25,7 +24,6 @@ Library: /Users/dsi/Documents/vr/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_bu
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
---assembly-defines=Unity.Timeline;
 --assembly-defines=Unity.XR.CoreUtils;
 --assembly-defines=Unity.XR.Interaction.Toolkit;
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;
@@ -62,7 +60,6 @@ Library: /Users/dsi/Documents/vr/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_bu
 --assembly-defines=System.Configuration;
 --assembly-defines=System.Core;
 --assembly-defines=System;
---assembly-defines=System.Numerics;
 --assembly-defines=System.Xml;
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -72,7 +69,6 @@ Library: /Users/dsi/Documents/vr/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_bu
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
---assembly-defines=Unity.Timeline;
 --assembly-defines=Unity.XR.CoreUtils;
 --assembly-defines=Unity.XR.Interaction.Toolkit;
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;

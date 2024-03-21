@@ -14,11 +14,13 @@ public class DogAgentController : MonoBehaviour
     private bool isCarrying = false;
     private string movementAnimation = "MoveRun";
     private string targetTag;
-    private float moveSpeed = 5f;
-    public float walkingTresholdDistance = 100f;
-    public float walkSpeed = 20f;
-    public float runSpeed = 50f;
-    public float swimSpeed = 10f;
+    private float moveSpeed = 0.5f;
+    public float walkingTresholdDistance = 1f;
+    public float walkSpeed = 0.2f;
+    public float runSpeed = 0.5f;
+    public float swimSpeed = 0.1f;
+
+
 
     void Start()
     {
@@ -34,7 +36,6 @@ public class DogAgentController : MonoBehaviour
         if (isMoving)
         {
             MoveToTarget();
-            TargetReach();
         }
     }
 
@@ -42,7 +43,7 @@ public class DogAgentController : MonoBehaviour
     {
         isFetchig = true;
         GameObject targetObject = GameObject.FindWithTag(targetTag);
-        Vector3 targetObjectPosition = targetObject.transform.position + (targetObject.transform.forward * -20f);
+        Vector3 targetObjectPosition = targetObject.transform.position + (targetObject.transform.forward * -0.2f);
 
         if (targetTag == "Bone")
         {
@@ -59,7 +60,7 @@ public class DogAgentController : MonoBehaviour
         {
             longerSideDirection = bone.transform.right;
         }
-        return bone.transform.position + (longerSideDirection.normalized * 20f);
+        return bone.transform.position + (longerSideDirection.normalized * 0.2f);
     }
 
     private void OnReachRotateToTarget()
@@ -101,7 +102,7 @@ public class DogAgentController : MonoBehaviour
     private void TargetReach()
     {
         float distanceToTarget = Vector3.Distance(rb.position, targetPosition);
-        float stopDistance = dogCollider.bounds.extents.magnitude * 0.3f;
+        float stopDistance = dogCollider.bounds.extents.magnitude;
 
         if (distanceToTarget <= stopDistance)
         {
@@ -135,7 +136,7 @@ public class DogAgentController : MonoBehaviour
         {
             // Calculate the drop position directly below the dog's head
             Vector3 dropPosition = dogHead.transform.position;
-            dropPosition.y = 0.5f;
+            dropPosition.y = 0.05f;
 
             RaycastHit hit;
             if (Physics.Raycast(dropPosition, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Terrain")))
@@ -217,5 +218,11 @@ public class DogAgentController : MonoBehaviour
     public void OnPutDown()
     {
         UnmountBone();
+    }
+
+    public void StopMovement()
+    {
+        isMoving = false;
+        animator.SetBool(movementAnimation, false);
     }
 }
