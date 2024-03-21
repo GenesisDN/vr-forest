@@ -71,3 +71,9 @@ crashlytics-build.properties
 
 
 *.meta
+_*/
+
+*.txt
+
+Assets/TerrainDemoScene_URP/*
+Assets/8K*/*

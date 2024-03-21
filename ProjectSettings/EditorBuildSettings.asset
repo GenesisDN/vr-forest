@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DogScene.unity
-    guid: f300f3d29035448ec9cb424f19b37ddc
+    path: Assets/Scenes/Forest.unity
+    guid: d02102234a35e4cbd9769223044701d4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 057d5e3b4835647d3ad16f45f36f424d,
       type: 2}
