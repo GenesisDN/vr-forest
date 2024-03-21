@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Forest.unity
     guid: d02102234a35e4cbd9769223044701d4
+  - enabled: 1
+    path: Assets/ForestDog.unity
+    guid: 258e4362123e14456ae1ab8ccc6affab
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 057d5e3b4835647d3ad16f45f36f424d,
       type: 2}
