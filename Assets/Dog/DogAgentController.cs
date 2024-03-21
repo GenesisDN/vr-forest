@@ -5,7 +5,6 @@ using UnityEngine;
 public class DogAgentController : MonoBehaviour
 {
     private Animator animator;
-    private TerrainCollider terrainCollider;
     private Collider dogCollider;
     private Vector3 targetPosition;
     private Rigidbody rb;
@@ -15,6 +14,7 @@ public class DogAgentController : MonoBehaviour
     private string movementAnimation = "MoveRun";
     private string targetTag;
     private float moveSpeed = 0.5f;
+    public GameObject mainCameraObject;
     public float walkingTresholdDistance = 1f;
     public float walkSpeed = 0.2f;
     public float runSpeed = 0.5f;
@@ -27,7 +27,6 @@ public class DogAgentController : MonoBehaviour
         animator = GetComponent<Animator>();
         dogCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
-        terrainCollider = Terrain.activeTerrain.GetComponent<TerrainCollider>();
     }
 
     void FixedUpdate()
@@ -36,6 +35,7 @@ public class DogAgentController : MonoBehaviour
         if (isMoving)
         {
             MoveToTarget();
+            //TargetReach();
         }
     }
 
@@ -101,10 +101,8 @@ public class DogAgentController : MonoBehaviour
 
     private void TargetReach()
     {
-        float distanceToTarget = Vector3.Distance(rb.position, targetPosition);
-        float stopDistance = dogCollider.bounds.extents.magnitude;
-
-        if (distanceToTarget <= stopDistance)
+        Collider collider = GetComponent<Collider>();
+        if (dogCollider.bounds.Intersects(collider.bounds))
         {
             isMoving = false;
             animator.SetBool(movementAnimation, false);
