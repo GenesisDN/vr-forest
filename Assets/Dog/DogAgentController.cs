@@ -18,9 +18,9 @@ public class DogAgentController : MonoBehaviour
     public float walkSpeed = 0.2f;
     public float runSpeed = 0.5f;
     public float swimSpeed = 0.1f;
-    public Collider characterCollider;
-
-
+    public SphereCollider characterCollider;
+    public Camera cameraObject;
+    public LayerMask terrainLayerMask;
 
     void Start()
     {
@@ -31,11 +31,11 @@ public class DogAgentController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        FollowCharacter();
         if (isMoving)
         {
             MoveToTarget();
-            TargetReach();
+            //TargetReach();
         }
     }
 
@@ -43,12 +43,11 @@ public class DogAgentController : MonoBehaviour
     {
         isFetchig = true;
         GameObject targetObject = GameObject.FindWithTag(targetTag);
-        Vector3 targetObjectPosition = targetObject.transform.position + (targetObject.transform.forward * -0.2f);
 
         if (targetTag == "Bone")
         {
-            targetObjectPosition = GetLongerSideOfBone(targetObject);
-            SetTargetPosition(targetObjectPosition);
+            Vector3 targetObjectPosition = GetLongerSideOfBone(targetObject);
+            
         }
     }
 
@@ -90,10 +89,42 @@ public class DogAgentController : MonoBehaviour
         }
     }
 
+    private void FollowCharacter()
+    {
+        if (dogCollider.bounds.Intersects(characterCollider.bounds) ||
+            characterCollider.bounds.Contains(dogCollider.ClosestPoint(dogCollider.bounds.center)))
+        {
+            this.isMoving = false;
+            HandleMovementAnimation();
+            return;
+        }
+
+        RaycastHit hit;
+        Ray ray = new Ray(characterCollider.transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayerMask))
+        {
+            Vector3 newPosition = hit.point;
+            newPosition.y += 0.01f;
+
+            Vector3 cameraPosition = cameraObject.transform.position;
+            Vector3 cameraForward = cameraObject.transform.forward;
+            Vector3 position = cameraPosition + (cameraForward * 2f);
+            newPosition.x = position.x;
+            newPosition.z = position.z;
+
+            this.targetPosition.y = newPosition.y;
+            this.targetPosition.x = position.x;
+            this.targetPosition.z = position.z;
+
+            this.isMoving = true;
+            HandleMovementAnimation();
+        }
+        
+    }
+
     private void MoveToTarget()
     {
-        isMoving = true;
-        animator.SetBool(movementAnimation, true);
         Vector3 newPosition = Vector3.MoveTowards(rb.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);
         rb.MoveRotation(Quaternion.LookRotation(rb.velocity));
@@ -101,13 +132,10 @@ public class DogAgentController : MonoBehaviour
 
     private void TargetReach()
     {
-        // stop if dog approached character or is inside the bounds
         if (dogCollider.bounds.Intersects(characterCollider.bounds) ||
             characterCollider.bounds.Contains(dogCollider.ClosestPoint(dogCollider.bounds.center)))
         {
-            isMoving = false;
-            animator.SetBool(movementAnimation, false);
-
+            
             if (isFetchig)
             {
                 OnReachRotateToTarget();
@@ -161,24 +189,28 @@ public class DogAgentController : MonoBehaviour
 
     private void HandleMovementAnimation()
     {
+        if (!isMoving)
+        {
+            animator.SetBool("MoveRun", false);
+            animator.SetBool("MoveWalk", false);
+            return;
+        }
+
         float distanceToTarget = Vector3.Distance(rb.transform.position, targetPosition);
         if (distanceToTarget > walkingTresholdDistance)
         {
-            movementAnimation = "MoveRun";
             moveSpeed = runSpeed;
+            animator.SetBool("MoveRun", true);
+            animator.SetBool("MoveWalk", false);
         }
         else
         {
-            movementAnimation = "MoveWalk";
             moveSpeed = walkSpeed;
+            animator.SetBool("MoveRun", false);
+            animator.SetBool("MoveWalk", true);
         }
-    }
 
-    public void SetTargetPosition(Vector3 targetPosition)
-    {
-        this.targetPosition = targetPosition;
-        HandleMovementAnimation();
-        MoveToTarget();
+
     }
 
     public void SetTargetTag(string targetTag)

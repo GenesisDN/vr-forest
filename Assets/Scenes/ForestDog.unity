@@ -824,7 +824,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 83267319}
@@ -848,7 +848,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &55973221
 GameObject:
@@ -2811,7 +2811,7 @@ Transform:
   m_GameObject: {fileID: 511246039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3124,6 +3124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58c58e2354b14f96b9e9ee856c64cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagToIgnore: Character Collider
 --- !u!1 &629771769
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,10 +6527,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bdf2cf0edaf45b9489e656a2fccb6b6c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1933778781}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bdf2cf0edaf45b9489e656a2fccb6b6c,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1933778787}
   m_SourcePrefab: {fileID: 100100000, guid: bdf2cf0edaf45b9489e656a2fccb6b6c, type: 3}
 --- !u!1 &1933778780 stripped
@@ -6538,23 +6535,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1933778779}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1933778781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933778780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a6f487461f34945b076662c9e82e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogGameObject: {fileID: 1933778780}
-  characterTransform: {fileID: 83267319}
-  terrainLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &1933778782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6567,11 +6547,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecd603b67bb3e04da65c692bee2f123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingTresholdDistance: 1
-  walkSpeed: 0.2
-  runSpeed: 0.5
+  walkingTresholdDistance: 3.5
+  walkSpeed: 0.8
+  runSpeed: 1.5
   swimSpeed: 0.1
   characterCollider: {fileID: 21559701}
+  cameraObject: {fileID: 55973226}
+  terrainLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!64 &1933778783
 MeshCollider:
   m_ObjectHideFlags: 0
