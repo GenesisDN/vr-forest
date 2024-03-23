@@ -19,7 +19,7 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        FollowCharacter();
+        //FollowCharacter();
     }
 
 
@@ -33,7 +33,7 @@ public class InputHandler : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayerMask))
             {
                 Vector3 newPosition = hit.point;
-                newPosition.y += 0.1f; // Offset to prevent clipping into terrain
+                newPosition.y += 0.01f; // Offset to prevent clipping into terrain
                 dogAgentController.SetTargetPosition(newPosition);
             }
         }

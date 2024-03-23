@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2723F00E-D669-6D54-74E3-59E92CCD286E}</ProjectGuid>
+    <ProjectGuid>{39015352-61DD-428D-5818-9F484B43975D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,13 +62,21 @@
   <ItemGroup>
     <Compile Include="Assets/Oculus Hands/AnimateHandsOnInput.cs" />
     <Compile Include="Assets/Dog/InputHandler.cs" />
+    <Compile Include="Assets/Scripts/SceneTransitionManager.cs" />
     <Compile Include="Assets/TerrainDemoScene_URP/Scripts/TerrainTreeToggle.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/8K Skybox Pack Free/Example Scenes/Script/RotateCamera.cs" />
     <Compile Include="Assets/Oculus Hands/ActivateGrabRay.cs" />
+    <Compile Include="Assets/Scripts/SetOptionFromUI.cs" />
+    <Compile Include="Assets/Scripts/AudioManager.cs" />
+    <Compile Include="Assets/Scripts/GameStartMenu.cs" />
     <Compile Include="Assets/TerrainDemoScene_URP/Scripts/SceneAnnotation.cs" />
+    <Compile Include="Assets/Scripts/UIAudio.cs" />
+    <Compile Include="Assets/Scripts/PlayAudioFromAudioManager.cs" />
     <Compile Include="Assets/Oculus Hands/ActivateTeleportationRay.cs" />
     <Compile Include="Assets/Dog/DogAgentController.cs" />
+    <Compile Include="Assets/Scripts/FadeScreen.cs" />
+    <Compile Include="Assets/Scripts/SetTurnTypeFromPlayerPref.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TerrainDemoScene_URP/Notes/Stamps.txt" />
@@ -94,6 +102,7 @@
     <None Include="Assets/TerrainDemoScene_URP/TextMeshPro/Shaders/TextMeshPro/TMP_SDF.shader" />
     <None Include="Assets/TerrainDemoScene_URP/TextMeshPro/Shaders/TextMeshPro/TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets/TerrainDemoScene_URP/TextMeshPro/Resources/LineBreaking Leading Characters.txt" />
+    <None Include="Assets/Scripts/GradientSkybox.shader" />
     <None Include="Assets/TerrainDemoScene_URP/TextMeshPro/Shaders/TextMeshPro/TMPro_Properties.cginc" />
     <None Include="Assets/TerrainDemoScene_URP/Scripts/Resources/SceneAnnotationUI.uss" />
     <None Include="Assets/TerrainDemoScene_URP/TextMeshPro/Shaders/TextMeshPro/TMPro_Surface.cginc" />
@@ -1187,11 +1196,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj">
-      <Project>{0311CEE7-ECBB-2638-1979-9C0DBD98E6A8}</Project>
+      <Project>{6BA0FDFD-55C7-01C3-7457-FC41134E0352}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj">
-      <Project>{623F276B-0FE8-20F3-7570-EDACBFD982EA}</Project>
+      <Project>{6848932E-1E7B-56A6-09A4-E917064D5F1A}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets</Name>
     </ProjectReference>
   </ItemGroup>

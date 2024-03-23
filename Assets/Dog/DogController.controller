@@ -408,28 +408,28 @@ AnimatorStateMachine:
     m_Position: {x: 860, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5703268315534645679}
-    m_Position: {x: 870, y: 280, z: 0}
+    m_Position: {x: 870, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5921795737049871858}
-    m_Position: {x: 870, y: 370, z: 0}
+    m_Position: {x: 870, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2434140693212142464}
-    m_Position: {x: 700, y: 490, z: 0}
+    m_Position: {x: 500, y: 640, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -908301178462741600}
-    m_Position: {x: 700, y: 570, z: 0}
+    m_Position: {x: 500, y: 720, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2767243625718684972}
-    m_Position: {x: 700, y: 660, z: 0}
+    m_Position: {x: 500, y: 810, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5615947624581663558}
-    m_Position: {x: 700, y: 750, z: 0}
+    m_Position: {x: 500, y: 900, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6527969775659463727}
-    m_Position: {x: 700, y: 830, z: 0}
+    m_Position: {x: 500, y: 980, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8065846703218781376}
-    m_Position: {x: 700, y: 910, z: 0}
+    m_Position: {x: 500, y: 1060, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -7663594271721867103}
@@ -487,37 +487,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: MoveRun
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: MoveWalk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: PickUp
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: PutDown
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Carry
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
