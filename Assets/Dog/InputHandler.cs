@@ -7,8 +7,7 @@ public class InputHandler : MonoBehaviour
 {
     private DogAgentController dogAgentController;
     public GameObject dogGameObject;
-    public Transform cameraTransform;
-    public float distanceWalkTargetThreshold = 1.2f;
+    public Transform characterTransform;
     public LayerMask terrainLayerMask;
 
     void Start()
@@ -19,21 +18,21 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        //FollowCharacter();
+        FollowCharacter();
     }
 
 
     void FollowCharacter()
     {
-        if (dogAgentController != null && cameraTransform != null)
+        if (dogAgentController != null && characterTransform != null)
         {
             RaycastHit hit;
-            Ray ray = new Ray(cameraTransform.position, Vector3.down);
+            Ray ray = new Ray(characterTransform.position, Vector3.down);
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayerMask))
             {
                 Vector3 newPosition = hit.point;
-                newPosition.y += 0.01f; // Offset to prevent clipping into terrain
+                newPosition.y += 0.01f;
                 dogAgentController.SetTargetPosition(newPosition);
             }
         }

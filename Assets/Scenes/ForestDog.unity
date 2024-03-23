@@ -797,6 +797,59 @@ MonoBehaviour:
     m_Reference: {fileID: -1636515391019944688, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!1 &21559699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21559700}
+  - component: {fileID: 21559701}
+  m_Layer: 0
+  m_Name: Character Collider
+  m_TagString: Character Collider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &21559700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21559699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 83267319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &21559701
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21559699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &55973221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &83267309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,6 +1379,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 511246040}
+  - {fileID: 21559700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &95825621
@@ -1939,7 +1993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &302561412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,7 +2811,7 @@ Transform:
   m_GameObject: {fileID: 511246039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2784,6 +2838,7 @@ GameObject:
   - component: {fileID: 583846478}
   - component: {fileID: 583846477}
   - component: {fileID: 583846476}
+  - component: {fileID: 583846482}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -3057,6 +3112,18 @@ Transform:
   - {fileID: 1235132559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &583846482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583846475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58c58e2354b14f96b9e9ee856c64cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &629771769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,7 +3896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &705986512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6484,8 +6551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dogGameObject: {fileID: 1933778780}
-  cameraTransform: {fileID: 55973222}
-  distanceWalkTargetThreshold: 1.2
+  characterTransform: {fileID: 83267319}
   terrainLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -6501,11 +6567,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecd603b67bb3e04da65c692bee2f123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCameraObject: {fileID: 83267308}
   walkingTresholdDistance: 1
   walkSpeed: 0.2
   runSpeed: 0.5
   swimSpeed: 0.1
+  characterCollider: {fileID: 21559701}
 --- !u!64 &1933778783
 MeshCollider:
   m_ObjectHideFlags: 0

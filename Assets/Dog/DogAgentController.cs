@@ -14,11 +14,11 @@ public class DogAgentController : MonoBehaviour
     private string movementAnimation = "MoveRun";
     private string targetTag;
     private float moveSpeed = 0.5f;
-    public GameObject mainCameraObject;
     public float walkingTresholdDistance = 1f;
     public float walkSpeed = 0.2f;
     public float runSpeed = 0.5f;
     public float swimSpeed = 0.1f;
+    public Collider characterCollider;
 
 
 
@@ -35,7 +35,7 @@ public class DogAgentController : MonoBehaviour
         if (isMoving)
         {
             MoveToTarget();
-            //TargetReach();
+            TargetReach();
         }
     }
 
@@ -101,8 +101,9 @@ public class DogAgentController : MonoBehaviour
 
     private void TargetReach()
     {
-        Collider collider = GetComponent<Collider>();
-        if (dogCollider.bounds.Intersects(collider.bounds))
+        // stop if dog approached character or is inside the bounds
+        if (dogCollider.bounds.Intersects(characterCollider.bounds) ||
+            characterCollider.bounds.Contains(dogCollider.ClosestPoint(dogCollider.bounds.center)))
         {
             isMoving = false;
             animator.SetBool(movementAnimation, false);

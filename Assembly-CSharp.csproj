@@ -66,6 +66,7 @@
     <Compile Include="Assets/TerrainDemoScene_URP/Scripts/TerrainTreeToggle.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/8K Skybox Pack Free/Example Scenes/Script/RotateCamera.cs" />
+    <Compile Include="Assets/Dog/BoneController.cs" />
     <Compile Include="Assets/Oculus Hands/ActivateGrabRay.cs" />
     <Compile Include="Assets/Scripts/SetOptionFromUI.cs" />
     <Compile Include="Assets/Scripts/AudioManager.cs" />
