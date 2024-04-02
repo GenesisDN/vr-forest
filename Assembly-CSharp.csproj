@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Oculus Hands/AnimateHandsOnInput.cs" />
-    <Compile Include="Assets/Dog/InputHandler.cs" />
     <Compile Include="Assets/Scripts/SceneTransitionManager.cs" />
     <Compile Include="Assets/TerrainDemoScene_URP/Scripts/TerrainTreeToggle.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />

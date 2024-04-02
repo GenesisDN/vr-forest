@@ -7,6 +7,9 @@ TagManager:
   - Right Hand
   - Left Hand
   - Character Collider
+  - Bone
+  - Mouth
+  - DogHead
   layers:
   - Default
   - TransparentFX
@@ -39,7 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - IgnoreBone
   m_SortingLayers:
   - name: Default
     uniqueID: 0
