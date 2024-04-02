@@ -7,6 +7,14 @@ public class DogAgentController : MonoBehaviour
     private Animator animator;
     private Collider dogCollider;
     private Vector3 targetPosition;
+    private AudioSource audioSource;
+    public AudioClip barkSound;
+    public AudioClip walkSound;
+    public AudioClip runSound;
+    public AudioClip dropSound;
+    public AudioClip squeekSound;
+    public AudioClip pantSound;
+    private string currentClip;
     private Rigidbody rb;
     private bool isMoving = false;
     private bool isFetching = false;
@@ -21,11 +29,17 @@ public class DogAgentController : MonoBehaviour
     public LayerMask terrainLayerMask;
     public GameObject bone;
 
+    private float lastSoundTime = 0f;
+    private float minTimeBetweenSounds = 1f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         dogCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
+
+        audioSource = GetComponent<AudioSource>();
+        HandleSound("pant");
     }
 
     void FixedUpdate()
@@ -36,7 +50,7 @@ public class DogAgentController : MonoBehaviour
         {
             MoveToTarget();
             if (isFetching) PickUp();
-            
+
         }
     }
 
@@ -89,7 +103,7 @@ public class DogAgentController : MonoBehaviour
     {
         if (bone == null) return;
         if (isCarrying) return;
-        
+
         Vector3 targetObjectPosition = GetLongerSideOfBone(bone);
         RaycastHit hit;
         Ray ray = new Ray(targetObjectPosition, Vector3.down);
@@ -136,7 +150,7 @@ public class DogAgentController : MonoBehaviour
             isCarrying = true;
 
             HandleMovementAnimation();
-            
+
             animator.SetTrigger("PickUp");
             animator.SetBool("Carry", true);
         }
@@ -162,6 +176,8 @@ public class DogAgentController : MonoBehaviour
         bone.transform.parent = mouth.transform;
         bone.transform.localPosition = Vector3.zero;
         bone.transform.localRotation = Quaternion.identity;
+
+        audioSource.PlayOneShot(squeekSound);
     }
 
     private void UnmountBone()
@@ -187,12 +203,18 @@ public class DogAgentController : MonoBehaviour
         UnmountBone();
     }
 
+    public void OnBark()
+    {
+        audioSource.PlayOneShot(barkSound);
+    }
+
     private void HandleMovementAnimation()
     {
         if (!isMoving)
         {
             animator.SetBool("MoveRun", false);
             animator.SetBool("MoveWalk", false);
+            HandleSound("pant");
             return;
         }
 
@@ -202,15 +224,40 @@ public class DogAgentController : MonoBehaviour
             moveSpeed = runSpeed;
             animator.SetBool("MoveRun", true);
             animator.SetBool("MoveWalk", false);
+            HandleSound("run");
         }
         else
         {
             moveSpeed = walkSpeed;
             animator.SetBool("MoveRun", false);
             animator.SetBool("MoveWalk", true);
+            HandleSound("walk");
+        }
+    }
+
+    private void HandleSound(string newClip)
+    {
+        if ((currentClip != null && currentClip.Equals(newClip)) || Time.time - lastSoundTime < minTimeBetweenSounds) return;
+
+        currentClip = newClip;
+        audioSource.clip = getClip(currentClip);
+        audioSource.Play();
+        lastSoundTime = Time.time;
+
+    }
+
+    private AudioClip getClip(string clip)
+    {
+        switch(clip)
+        {
+            case "bark": return barkSound;
+            case "run": return runSound;
+            case "walk": return walkSound;
+            case "drop": return dropSound;
+            case "squeek": return squeekSound;
         }
 
-
+        return pantSound;
     }
 
     public void Pet()
